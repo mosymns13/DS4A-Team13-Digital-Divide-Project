@@ -28,6 +28,122 @@ df.set_index(["state"])
 df.to_csv(r"Initial Clean Data/broadband_clean.csv", index = False)
 
 
+################### Computer Type and Internet ################################
+
+# importing raw data
+df = pd.read_csv('Raw Data/Computer Type and Internet/ACSST1Y2018.S2301_data_with_overlays_2022-01-19T094603.csv')
+
+#Formatting columns
+Subs_formatted = df
+Subs_formatted = Subs_formatted.iloc[1: , :]
+Subs_formatted[['county', 'state']] = Subs_formatted['NAME'].str.split(',', expand=True)
+Subs_formatted = Subs_formatted.drop('NAME', 1)
+
+
+overall_pop_EST_data_Subs = Subs_formatted[["GEO_ID", "county", "state",'S2301_C01_001E', 'S2301_C01_002E', 'S2301_C01_003E',
+       'S2301_C01_004E', 'S2301_C01_005E', 'S2301_C01_006E', 'S2301_C01_007E',
+       'S2301_C01_008E', 'S2301_C01_009E', 'S2301_C01_010E', 'S2301_C01_011E',
+       'S2301_C01_012E', 'S2301_C01_013E', 'S2301_C01_014E', 'S2301_C01_015E',
+       'S2301_C01_016E', 'S2301_C01_017E', 'S2301_C01_018E', 'S2301_C01_019E',
+       'S2301_C01_020E', 'S2301_C01_021E', 'S2301_C01_022E', 'S2301_C01_023E',
+       'S2301_C01_024E', 'S2301_C01_025E', 'S2301_C01_026E', 'S2301_C01_027E',
+       'S2301_C01_028E', 'S2301_C01_029E', 'S2301_C01_030E', 'S2301_C01_031E',
+       'S2301_C02_001E', 'S2301_C02_002E', 'S2301_C02_003E', 'S2301_C02_004E',
+       'S2301_C02_005E', 'S2301_C02_006E', 'S2301_C02_007E', 'S2301_C02_008E',
+       'S2301_C02_009E', 'S2301_C02_010E', 'S2301_C02_011E', 'S2301_C02_012E',
+       'S2301_C02_013E', 'S2301_C02_014E', 'S2301_C02_015E', 'S2301_C02_016E',
+       'S2301_C02_017E', 'S2301_C02_018E', 'S2301_C02_019E', 'S2301_C02_020E',
+       'S2301_C02_021E', 'S2301_C02_022E', 'S2301_C02_023E', 'S2301_C02_024E',
+       'S2301_C02_025E', 'S2301_C02_026E', 'S2301_C02_027E', 'S2301_C02_028E',
+       'S2301_C02_029E', 'S2301_C02_030E', 'S2301_C02_031E']]
+
+
+
+overall_pop_EST_dict = {
+                "S2301_C01_001E":"est_total_households", 
+                "S2301_C01_002E":"est_total_households_with_Device", 
+                "S2301_C01_003E":"est_total_households_with_Desktop", 
+                "S2301_C01_004E":"est_total_households_with_NO",
+                "S2301_C01_005E":"est_total_households_with_Smartphone",
+                "S2301_C01_006E":"est_total_households_with_NO2",
+                "S2301_C01_007E":"est_total_households_with_Portable", 
+                "S2301_C01_008E":"est_total_households_with_NO3", 
+                "S2301_C01_009E":"est_total_households_with_Other",
+                "S2301_C01_010E":"est_total_households_with_NO4", 
+                "S2301_C01_011E":"est_total_households_None", 
+                "S2301_C01_012E":"est_total_households_with_SUB", 
+                'S2301_C01_013E':"est_total_households_with_DU",
+                'S2301_C01_014E': "est_total_households_with_Broadband",
+                'S2301_C01_015E':"est_total_households_with_Cellular",
+                'S2301_C01_016E':"est_total_households_with_Cell_NO",
+                'S2301_C01_017E':"est_total_households_with_Cable",
+                'S2301_C01_018E':"est_total_households_with_SAT",
+                'S2301_C01_019E':"est_total_households_without_SUB",
+                'S2301_C01_020E':"est_total_20k_households",
+                'S2301_C01_021E':"est_total_20k_households_with_DU",
+                'S2301_C01_022E':"est_total_20k_households_with_Broadband",
+                'S2301_C01_023E':"est_total_20k_households_without_SUB",
+                'S2301_C01_024E':"est_total_under75k_households",
+                'S2301_C01_025E':"est_total_under75k_households_with_DU",
+                'S2301_C01_026E':"est_total_under75k_households_with_BB",
+                'S2301_C01_027E':"est_total_under75k_households_without_SUB",
+                'S2301_C01_028E':"est_total_75k_households",
+                'S2301_C01_029E':"est_total_75k_households_with_DU",
+                'S2301_C01_030E':"est_total_75k_households_with_BB",
+                'S2301_C01_031E':"est_total_75k_households_without_SUB",
+                "S2301_C02_001E":"PCT_total_households", 
+                "S2301_C02_002E":"PCT_total_households_with_Device", 
+                "S2301_C02_003E":"PCT_total_households_with_Desktop", 
+                "S2301_C02_004E":"PCT_total_households_with_NO",
+                "S2301_C02_005E":"PCT_total_households_with_Smartphone",
+                "S2301_C02_006E":"PCT_total_households_with_NO2",
+                "S2301_C02_007E":"PCT_total_households_with_Portable", 
+                "S2301_C02_008E":"PCT_total_households_with_NO3", 
+                "S2301_C02_009E":"PCT_total_households_with_Other",
+                "S2301_C02_010E":"PCT_total_households_with_NO4", 
+                "S2301_C02_011E":"PCT_total_households_None", 
+                "S2301_C02_012E":"PCT_total_households_with_SUB", 
+                'S2301_C02_013E':"PCT_total_households_with_DU",
+                'S2301_C02_014E':"PCT_total_households_with_Broadband",
+                'S2301_C02_015E':"PCT_total_households_with_Cellular",
+                'S2301_C02_016E':"PCT_total_households_with_Cell_NO",
+                'S2301_C02_017E':"PCT_total_households_with_Cable",
+                'S2301_C02_018E':"PCT_total_households_with_SAT",
+                'S2301_C02_019E':"PCT_total_households_without_SUB",
+                'S2301_C02_020E':"PCT_total_20k_households",
+                'S2301_C02_021E':"PCT_total_20k_households_with_DU",
+                'S2301_C02_022E':"PCT_total_20k_households_with_Broadband",
+                'S2301_C02_023E':"PCT_total_20k_households_without_SUB",
+                'S2301_C02_024E':"PCT_total_under75k_households",
+                'S2301_C02_025E':"PCT_total_under75k_households_with_DU",
+                'S2301_C02_026E':"PCT_total_under75k_households_with_BB",
+                'S2301_C02_027E':"PCT_total_under75k_households_without_SUB",
+                'S2301_C02_028E':"PCT_total_75k_households",
+                'S2301_C02_029E':"PCT_total_75k_households_with_DU",
+                'S2301_C02_030E':"PCT_total_75k_households_with_BB",
+                'S2301_C02_031E':"PCT_total_75k_households_without_SUB",
+                          }
+
+overall_pop_EST_data_Subs.rename(columns=overall_pop_EST_dict, inplace=True)
+
+# Creating an estimates df
+EST_df = overall_pop_EST_data_Subs.copy()
+EST_df = EST_df.drop(columns = EST_df.columns.astype(str)[EST_df.columns.str.contains("PCT")], axis =1, inplace = False)
+EST_df = EST_df.set_index('GEO_ID')
+
+# Creating a percents df
+PCT_df = overall_pop_EST_data_Subs.copy()
+PCT_df = PCT_df.drop(columns = PCT_df.columns.astype(str)[PCT_df.columns.str.contains("est")], axis =1, inplace = False)
+PCT_df = PCT_df.set_index('GEO_ID')
+
+
+#Saving to new csv for seprate estimates and percents
+EST_df.to_csv(r"Initial Clean Data/est_computer_internet_data_clean.csv", index = False)
+PCT_df.to_csv(r"Initial Clean Data/pct_computer_internet_data_clean.csv", index = False)
+
+
+
+
 ######################### SECONDARY DATASETS #################################
 
 ########################## School Enrollment #################################
