@@ -129,12 +129,12 @@ overall_pop_EST_data_Subs.rename(columns=overall_pop_EST_dict, inplace=True)
 # Creating an estimates df
 EST_df = overall_pop_EST_data_Subs.copy()
 EST_df = EST_df.drop(columns = EST_df.columns.astype(str)[EST_df.columns.str.contains("PCT")], axis =1, inplace = False)
-EST_df = EST_df.set_index('GEO_ID')
+#EST_df = EST_df.set_index('GEO_ID')
 
 # Creating a percents df
 PCT_df = overall_pop_EST_data_Subs.copy()
 PCT_df = PCT_df.drop(columns = PCT_df.columns.astype(str)[PCT_df.columns.str.contains("est")], axis =1, inplace = False)
-PCT_df = PCT_df.set_index('GEO_ID')
+#PCT_df = PCT_df.set_index('GEO_ID')
 
 
 #Saving to new csv for seprate estimates and percents
