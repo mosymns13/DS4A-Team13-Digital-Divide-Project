@@ -14,7 +14,7 @@ import numpy as np
 ################################# Broadband #################################
 #opened from csv from downloaded 
 file = open("Raw Data/Broadband/broadband_long2000-2018rev.csv","r")
-df = pd.read_csv("broadband_long2000-2018rev.csv")
+df = pd.read_csv("Raw Data/Broadband/broadband_long2000-2018rev.csv")
 
 
 df["state"] = df["statenam"]
@@ -25,7 +25,7 @@ del df["broadband"]
 df.set_index(["state"])
 
 #Save new data to CSV
-df.to_csv(r"broadband_clean.csv", index = False)
+df.to_csv(r"Initial Clean Data/broadband_clean.csv", index = False)
 
 
 ######################### SECONDARY DATASETS #################################
@@ -35,7 +35,7 @@ df.to_csv(r"broadband_clean.csv", index = False)
 
 ##Open saved csv from downloaded census data
 file = open("Raw Data/School Enrollment/School_Enrollment2018.csv","r")
-df = pd.read_csv("School_Enrollment2018.csv")
+df = pd.read_csv("Raw Data/School Enrollment/School_Enrollment2018.csv")
 pd.set_option('display.max_columns', None)
 
 ##Remove header row to get row 1 as headers 
@@ -57,7 +57,7 @@ clean_data[["County", "State"]] = clean_data["Geographic Area Name"].str.split('
 clean_data = clean_data.drop("Geographic Area Name", 1)
 
 ##Save new data to CSV
-clean_data.to_csv(r"school_enrollment_clean.csv", index = False)
+clean_data.to_csv(r"Initial Clean Data/school_enrollment_clean.csv", index = False)
 
 
 ################################ Employment #################################
@@ -92,7 +92,7 @@ formating_employment = pd.DataFrame(formating_employment)
 formating_employment = formating_employment.infer_objects()
 
 #Explorting inital clean employment data
-formating_employment.to_csv(r'clean_employment_data.csv', index = False)
+formating_employment.to_csv(r'Initial Clean Data/clean_employment_data.csv', index = False)
 
 ###################################### Income #################################
 
@@ -127,4 +127,4 @@ formating_income = formating_income.infer_objects()
 
 #Explorting inital clean income data
 
-formating_income.to_csv(r'clean_income_data.csv', index = False)
+formating_income.to_csv(r'Initial Clean Data/clean_income_data.csv', index = False)

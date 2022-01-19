@@ -2,8 +2,4 @@ pandas
 matplotlib
 seaborn
 numpy
-geopandas
-geoplot
-mapclassify
-base64
-json
+
