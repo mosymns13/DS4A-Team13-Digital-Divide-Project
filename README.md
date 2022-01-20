@@ -16,3 +16,4 @@ For the Data Science for All (Empowerment Fellowship), a group of individuals in
 
 ## Reminders
 - **DO NOT** commit to directly to the main branch. Work on your own branch and submit pull requests to merge to the main when finalized.
+- You are welcome to make edits to the README as needed.
