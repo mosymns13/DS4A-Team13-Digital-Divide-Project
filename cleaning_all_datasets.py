@@ -142,7 +142,49 @@ EST_df.to_csv(r"Initial Clean Data/est_computer_internet_data_clean.csv", index 
 PCT_df.to_csv(r"Initial Clean Data/pct_computer_internet_data_clean.csv", index = False)
 
 
+########################## Population Data #################################
 
+#Open saved csv from downloaded census data
+file = open("Raw Data/Population/pop_data.csv","r")
+df = pd.read_csv("Raw Data/Population/pop_data.csv")
+pd.set_option('display.max_columns', None)
+
+#Remove header row to get row 1 as headers 
+df.columns = df.iloc[0]
+data = df.drop(labels=0, axis=0)
+
+#Dropping all irrelevant columns by creating a new dataframe with usable data
+clean_data = data[["id", "Geographic Area Name"," !!Total:"]]
+clean_data = clean_data.rename(columns = {" !!Total:":"pop_total"})
+
+#Split county and state name columns to be compatible with other data
+clean_data[["county", "state"]] = clean_data["Geographic Area Name"].str.split(',', expand=True)
+clean_data = clean_data.drop("Geographic Area Name", 1)
+
+#reformating state
+clean_data["state"] = clean_data["state"].astype(str)
+clean_data["state"] = clean_data["state"].str.lstrip()
+
+#reformating pop
+clean_data["pop_total"] = clean_data["pop_total"].astype(int)
+
+#creating urban vs rural population classification
+def pop_type(pop_total):
+    """Assign labels to county according to their population size
+    """
+    if pop_total < 10000:
+        label = "Rural Area"
+    elif pop_total < 49999: #Between 10,000 to 49,999
+        label = "Micro Area"
+    else: #Greater than 50k
+        label = "Metro Area"
+    return label
+
+#applying the labels
+clean_data["pop_class"] = clean_data["pop_total"].apply(pop_type)
+
+#Save new data to CSV
+clean_data.to_csv(r"Initial Clean Data/pop_data_clean.csv", index = False)
 
 ######################### SECONDARY DATASETS #################################
 
@@ -244,3 +286,47 @@ formating_income = formating_income.infer_objects()
 #Explorting inital clean income data
 
 formating_income.to_csv(r'Initial Clean Data/clean_income_data.csv', index = False)
+
+
+###################################### Income #################################
+
+### open households csv files
+with open('Raw Data/Households and Families/ACSST1Y2018.S1101_data_with_overlays_2022-01-27T105511.csv') as f:
+    raw_households =  pd.read_csv(f, delimiter=',')
+
+### Cleaning households data    
+formating_households = raw_households
+
+#dropping the first row with the ID information 
+formating_households = formating_households.iloc[1: , :]
+
+#dropping US total data for now 
+formating_households = formating_households[formating_households['NAME'] != 'United States']
+
+#splitting county and state into separate columns and dropping 'NAME' column
+formating_households[['county', 'state']] = formating_households['NAME'].str.split(',', expand=True)
+formating_households = formating_households.drop('NAME', 1)
+
+#Replacing all the 'N' with NAN
+formating_households = formating_households.replace('N', np.NaN)
+formating_households = formating_households.replace('*****', np.NaN)
+
+#Converting all true numeric variables to float NOTE: RUNNING INTO ISSUE HERE
+formating_households = pd.DataFrame(formating_households)
+formating_households = formating_households.infer_objects()
+
+#Extracting only necessary columns
+household_cols = formating_households[['GEO_ID', 'S1101_C01_001E', 'S1101_C01_002E', 
+                                       'S1101_C01_003E', 'S1101_C01_004E']]
+
+household_dict = {"GEO_ID": "geo_id",
+                  "S1101_C01_001E":"est_total_households_official",
+                  "S1101_C01_002E":"est_avg_household_size",
+                  "S1101_C01_003E":"est_total_families_official",
+                  "S1101_C01_004E":"est_avg_families_size"
+                          }
+
+household_cols.rename(columns=household_dict, inplace=True)
+
+#Exporting initial clean households data
+household_cols.to_csv(r'Initial Clean Data/clean_households_data.csv', index = False)
