@@ -1,12 +1,13 @@
 # DS4A-Team13-Digital-Divide-Project
 For the Data Science for All (Empowerment Fellowship), a group of individuals in Cohort 3 in Team 13 worked on a capstone project hoping to solve issues around the digital divide in the United States.  
 
-## Repo Organization 
+## Repo Organization
 
 - **!Archive** : All old notebooks from our past submissions are stored. We can later delete files no longer needed.
-- **EDA Notebooks** : All old notebooks dedicated to intial EDA of individual datasets are stored. 
+- **EDA Notebooks** : All old notebooks dedicated to intial EDA of individual datasets are stored.
 - **Initial Clean Data**: CSV files produced by the `cleaning_all_datasets.py` script
 - **Raw Data** : All initial downloaded datasets that have been untouched from the source
+- ** Updated Raw Data File for Internet Subs
 
 ## Active files
 
