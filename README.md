@@ -31,7 +31,7 @@ Additionally, device availability is a factor in addressing the digital divide. 
 - **Documentation**: Juypter Notebook, RMarkdown
 - **Other Tools**: Tableau, RStudio
 
-<img src="https://github.com/mosymns13/DS4A-Team13-Digital-Divide-Project/blob/9eae19a164e73bc9505714473ae66aff7a6286e4/Presentation%20Materials/Team%2013%20DataFolio.png" width="25">
+<img src="https://github.com/mosymns13/DS4A-Team13-Digital-Divide-Project/blob/9eae19a164e73bc9505714473ae66aff7a6286e4/Presentation%20Materials/Team%2013%20DataFolio.png" width="100">
 
 ## Deliverables
 - Datafolio
