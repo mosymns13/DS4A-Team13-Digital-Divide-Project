@@ -1,23 +1,63 @@
 # DS4A-Team13-Digital-Divide-Project
-For the Data Science for All (Empowerment Fellowship), a group of individuals in Cohort 3 in Team 13 worked on a capstone project hoping to solve issues around the digital divide in the United States.  
 
-## Repo Organization
+**Status: Complete**
+*Follow up projects pending*
+
+## Background
+
+Data Science For All (DS4A) by Correlation One is an intensive fellowship program free for scholars from underepresented populations to learn data science methodologies to use in jobs across industries. Each fellowship includes a capstone project components where people work in teams to address an issue or solve a business problem.
+
+For the Data Science for All (Empowerment Fellowship), in Cohort 3 my group (Team 13) worked on a capstone project hoping to solve issues around the digital divide in the United States.  
+
+In this program, I was the technical lead for my project team providing gudiance on analysis strategies and predictive modeling. I managed the project timeline for deliverables and led in the design of the presentation materials. I also gave detailed feedback on deliiverables other teammates led.
+
+## Topic
+
+Currently, there are 30 million Americans that lack adequate internet access.
+
+The Bipartisan Infrastructure Deal has pledged $65 billion to invest in broadband infrastructure deployment, including digital proficiency. With the developing COVID-19 infection rates comes even more need to have access to the internet has working and schooling from home becomes a public health neccessity.
+
+Additionally, device availability is a factor in addressing the digital divide. As families are home with children and parents all working and schooling on one device creates other barriers.
+
+## Goals & Questions
+- What are the counties and regions in the U.S. with the highest need for internet and technology?
+- What are the significant factors that led to internet and technology access issues?
+
+## Method & Tools
+
+- **Language**: Python
+- **Data Processing**: Pandas, Numpy
+- **Data Visualizations**: Seaborn, Ploty
+- **Documentation**: Juypter Notebook
+- **Other Tools**: Tableau
+
+## Deliverables
+- Datafolio
+- Slide Deck Presentation
+- Dashboard in Tableau
+- Report
+
+## Other Information
+
+### Folder Organization
+Here is a list of folders and what is in them
 
 - **!Archive** : All old notebooks from our past submissions are stored. We can later delete files no longer needed.
 - **EDA Notebooks** : All old notebooks dedicated to intial EDA of individual datasets are stored.
 - **Initial Clean Data**: CSV files produced by the `cleaning_all_datasets.py` script (Note: Except the `internet_price_data.csv` is from a different script)
 - **Raw Data** : All initial downloaded datasets that have been untouched from the source
+- **Cleaning Data Scripts** : Python scripts used to create the inital clean datasets
+- **Presentation Materials** : Final documents and other notebooks for the presentations materials (i.e., slidedeck, datafolio, and report)
 
 
-## Active files
+### Active files
+Here are a list of imporant files that are in the order of our process flow
 
-- `cleaning_all_datasets.py` is the python script with the condensed code from all the individual notebooks from cleaning is saved. This is so that only need to run the script and not multiple notebooks.
-- `Key Variables Selection.ipynb` is the notebook that takes all that are chosen for initial analysis work. This file needs further review.
 - `requirements.txt` holds all the packages that are needed so far. You can add more packages as time goes on and re-run in your terminal as needed
+- `cleaning_all_datasets.py` is the python script with the condensed code from all the individual notebooks from cleaning is saved. This is so that only need to run the script and not multiple notebooks.
+- `Key Variables Selection.ipynb` is the notebook that takes all that are chosen for initial analysis work.
 - `initial_analytic_dataset.csv` is the file that holds the varibles chosen from the "Key Variables Seclection" notebook 
-- `revised_analytic_dataset.csv` is the file that holds all the data with the additional scoring information for certain key columns
+- `Analytic Dataset.ipynb` is the notebook where we explore the data and choose the variables we wanted to focus on 
+- `revised_analytic_dataset.csv` is the file that holds all the data with the additional scoring information for certain key columns produced from the "Analytic Dataset" notebook
+- `Exploration and Modeling.ipynb` is the notebook where we work through different models for our internet and device outcomes
 
-
-## Reminders
-- **DO NOT** commit to directly to the main branch. Work on your own branch and submit pull requests to merge to the main when finalized.
-- You are welcome to make edits to the README as needed.

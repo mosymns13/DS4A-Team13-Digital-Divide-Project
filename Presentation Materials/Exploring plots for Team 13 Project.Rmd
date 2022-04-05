@@ -1,0 +1,300 @@
+---
+title: "Team 13 Revised Analytic Dataset"
+author: "Millie Olivia Symns"
+date: "3/14/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(easypackages)
+libraries("tidyverse", "data.table", "readr", "janitor", "kableExtra", "lubridate", "magrittr", "openxlsx")
+```
+
+```{r}
+
+revised_analytic_data <- read.csv("/Users/milliesymns/DS4A/Digital Divide Project/DS4A-Team13-Digital-Divide-Project/revised_analytic_dataset.csv")
+```
+
+```{r}
+
+gen_details <- revised_analytic_data %>% 
+  select(region, pop_total, id) %>% 
+  group_by(region) %>% 
+  summarise(count_counties = n(),
+            total_pop = sum(pop_total, na.rm = T))
+
+```
+
+
+```{r}
+
+hist_plot_data <- revised_analytic_data %>% 
+  select(region, broadband_pct) %>% 
+  drop_na(broadband_pct)
+
+means_by_region <- revised_analytic_data %>% 
+  select(region, broadband_pct) %>% 
+  drop_na(broadband_pct) %>% 
+  group_by(region) %>% 
+  summarise(mean = mean(broadband_pct))
+
+f_labels <- data.frame(drv = c("Midwest", "Northeast", "South", "West"), label = c("74.4", "79.2", "69.1", "76.9"))
+
+hist_plot_data %>% 
+  ggplot(aes(x=broadband_pct, color='#4f5ee7', fill='#4f5ee7')) +
+    geom_histogram(alpha=0.6, binwidth = 1) +
+  facet_wrap(~region) + 
+  #geom_text(x = 6, y = 40, aes(label = label), data = f_labels) +
+  #labs(x = "Percent Broadband in Households" )+
+  theme_set(theme_gray(base_size = 18)) +
+  theme(panel.background = element_blank(), 
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(), 
+        legend.position = 'none', 
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(), 
+        axis.title = element_blank()) 
+  
+
+```
+
+```{r}
+
+hist_plot_data2 <- revised_analytic_data %>% 
+  select(region, broadband_pct) %>% 
+  drop_na(broadband_pct)
+
+
+hist_plot_data2 %>% 
+  ggplot(aes(x=broadband_pct)) +
+    geom_histogram(fill='#4f5ee7',color='#4f5ee7', alpha=0.6, binwidth = 1) +
+  facet_wrap(~region) + 
+  theme_set(theme_gray(base_size = 18)) +
+  theme(panel.background = element_blank(), 
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(), 
+        axis.title = element_blank()) 
+
+```
+```{r}
+
+hist_plot_income <- revised_analytic_data %>% 
+  select(region, est_med_income_households) %>% 
+  drop_na(est_med_income_households)
+
+
+hist_plot_income %>% 
+  ggplot(aes(x=est_med_income_households)) +
+    geom_histogram(fill='#4f5ee7',color='#4f5ee7', alpha=0.6, binwidth = 5) +
+  facet_wrap(~region) + 
+  theme_set(theme_gray(base_size = 18)) +
+  theme(panel.background = element_blank(), 
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(), 
+        axis.title = element_blank()) 
+
+```
+
+
+```{r}
+
+hist_plot_unempl <- revised_analytic_data %>% 
+  select(region, est_unemp_pop_ratio_16_over) %>% 
+  drop_na(est_unemp_pop_ratio_16_over)
+
+
+hist_plot_unempl %>% 
+  ggplot(aes(x=est_unemp_pop_ratio_16_over)) +
+    geom_histogram(fill='#4f5ee7',color='#4f5ee7', alpha=0.6, binwidth = 1) +
+  facet_wrap(~region) + 
+  theme_set(theme_gray(base_size = 18)) +
+  #labs(title = "Unemployment rate is generally consistent across regions")
+  theme(panel.background = element_blank(), 
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(), 
+        axis.title = element_blank(), 
+        title = element_text("Unemployment rate is generally consistent across regions"))
+```
+
+```{r}
+
+hist_plot_bb_metro <- revised_analytic_data %>% 
+  select(pop_class, broadband_pct) %>% 
+  filter(grepl('Metro', pop_class)) %>% 
+  drop_na(broadband_pct)
+
+
+hist_plot_bb_metro %>% 
+  ggplot(aes(x=broadband_pct)) +
+    geom_histogram(fill='#4f5ee7',color='#4f5ee7', alpha=0.6, binwidth = 5) +
+  facet_wrap(~pop_class) + 
+  theme_set(theme_gray(base_size = 18)) +
+  theme(panel.background = element_blank(), 
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(), 
+        axis.title = element_blank())
+
+```
+
+```{r}
+hist_plot_bb_micro <- revised_analytic_data %>% 
+  select(pop_class, broadband_pct) %>% 
+  filter(!grepl('Metro', pop_class)) %>% 
+  drop_na(broadband_pct)
+
+
+hist_plot_bb_micro %>% 
+  ggplot(aes(x=broadband_pct)) +
+    geom_histogram(fill='#4f5ee7',color='#4f5ee7', alpha=0.6, binwidth = 5) +
+  facet_wrap(~pop_class) + 
+  theme_set(theme_gray(base_size = 18)) +
+  theme(panel.background = element_blank(), 
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(), 
+        axis.title = element_blank())
+```
+
+
+```{r}
+
+wo_devices <- revised_analytic_data %>% 
+  select(region, est_total_households_frm_devices, pct_total_households_with_desktop, est_total_households_with_desktop, est_total_households_with_portable, pct_total_households_with_portable, pct_total_households_no_device, est_total_households_none) %>% 
+  drop_na(est_total_households_frm_devices) %>% 
+  group_by(region) %>% 
+  summarise(sum_with_desktop = sum(est_total_households_with_desktop), 
+            avg_with_desktop_pct = mean(pct_total_households_with_desktop), 
+            avg_with_portable_num = sum(est_total_households_with_portable),
+            avg_with_portable_pct = mean(pct_total_households_with_portable), 
+            total_none = sum(est_total_households_none),
+            total_households = sum(est_total_households_frm_devices),
+            pct_without = round(total_none/total_households * 100), 
+            pct_with_desktop = round(sum_with_desktop/total_households * 100))
+```
+
+
+```{r}
+
+total_wo_devices <- revised_analytic_data %>% 
+  select(region, est_total_households_frm_devices, pct_total_households_with_desktop, est_total_households_with_desktop, est_total_households_with_portable, pct_total_households_with_portable, pct_total_households_no_device, est_total_households_none, pct_total_households_no_device) %>% 
+  drop_na(est_total_households_frm_devices) %>% 
+  #group_by(region) %>% 
+  summarise(sum_with_desktop = sum(est_total_households_with_desktop), 
+            avg_with_desktop_pct = mean(pct_total_households_with_desktop), 
+            avg_with_portable_num = sum(est_total_households_with_portable),
+            avg_with_portable_pct = mean(pct_total_households_with_portable), 
+            total_none = sum(est_total_households_none),
+            avg_with_no_device = mean(pct_total_households_no_device),
+            total_households = sum(est_total_households_frm_devices),
+            pct_without = round(total_none/total_households * 100), 
+            pct_with_desktop = round(sum_with_desktop/total_households * 100))
+```
+
+```{r}
+counties_count <- revised_analytic_data %>% 
+  select(id,county, state, region, est_total_households_frm_devices, pct_total_households_with_desktop, est_total_households_with_desktop, est_total_households_with_portable, pct_total_households_with_portable, pct_total_households_no_device, est_total_households_none) %>% 
+  drop_na(est_total_households_frm_devices) %>% 
+  mutate(id = as.character(id), 
+         county = as.character(county)) %>% 
+  group_by(state, id) %>% #forogt to group by state the first time
+  mutate(n_id = n()) %>% 
+  group_by(state, county) %>% 
+  mutate(n_county = n())
+
+duped_counties <- counties_count %>% 
+  filter(n_county >1) %>% 
+  arrange(county)
+
+```
+
+```{r}
+
+income_diff_region <- revised_analytic_data %>% 
+  select(region, est_med_income_households) %>% 
+  group_by(region) %>% 
+  summarise(avg_income = median(est_med_income_households, na.rm = T))
+
+income_diff_pop <- revised_analytic_data %>% 
+  select(pop_class, est_med_income_households) %>% 
+  group_by(pop_class) %>% 
+  summarise(avg_income = median(est_med_income_households, na.rm = T))
+
+score_diff_region <- revised_analytic_data %>% 
+  select(region, total_score) %>% 
+  group_by(region) %>% 
+  summarise(avg_score = mean(total_score, na.rm = T))
+
+```
+
+
+```{r}
+
+alt_internet_sub_source <- read.csv("/Users/milliesymns/Downloads/ACSDT1Y2019.B28011_2022-03-15T160553/ACSDT1Y2019.B28011_data_with_overlays_2022-03-15T160521.csv")
+
+```
+
+```{r}
+
+area_counts <- revised_analytic_data %>% 
+  select(pop_class, region) %>% 
+  group_by(region, pop_class) %>% 
+  mutate(total = n()) %>% 
+  distinct(pop_class, .keep_all = T) %>% 
+  filter(total!=1) %>% 
+  pivot_wider(names_from = region, values_from = total)
+
+```
+
+
+
+```{r}
+
+south <- revised_analytic_data %>% 
+  select(region, broadband_pct) %>% 
+  filter(region == "South")
+
+northeast <- revised_analytic_data %>% 
+  select(region, broadband_pct) %>% 
+  filter(region == "Northeast")
+
+midwest <- revised_analytic_data %>% 
+  select(region, broadband_pct) %>% 
+  filter(region == "Midwest")
+
+west <- revised_analytic_data %>% 
+  select(region, broadband_pct) %>% 
+  filter(region == "West")
+
+
+
+```
+
+```{r}
+# Create a blank workbook
+hist_data_sheets<- createWorkbook()
+
+# Add some sheets to the workbook
+addWorksheet(hist_data_sheets, "South")
+addWorksheet(hist_data_sheets, "Northeast")
+addWorksheet(hist_data_sheets, "Midwest")
+addWorksheet(hist_data_sheets, "West")
+
+# Write the data to the sheets
+writeData(hist_data_sheets, sheet = "South", x = south)
+writeData(hist_data_sheets, sheet = "Northeast", x = northeast)
+writeData(hist_data_sheets, sheet = "Midwest", x = midwest)
+writeData(hist_data_sheets, sheet = "West", x = west)
+
+saveWorkbook(hist_data_sheets, "/Users/milliesymns/Downloads/region_hist_data.xlsx")
+
+```
+
