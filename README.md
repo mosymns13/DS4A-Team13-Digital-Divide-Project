@@ -40,7 +40,7 @@ Additionally, device availability is a factor in addressing the digital divide. 
 - [Datafolio](https://github.com/mosymns13/DS4A-Team13-Digital-Divide-Project/blob/9eae19a164e73bc9505714473ae66aff7a6286e4/Presentation%20Materials/Team%2013%20DataFolio.png)
 - [Slide Deck Presentation](https://github.com/mosymns13/DS4A-Team13-Digital-Divide-Project/blob/9eae19a164e73bc9505714473ae66aff7a6286e4/Presentation%20Materials/Final%20Team%2013%20DS4A%20Project%20Presentation.pdf)
 - [Dashboard in Tableau](https://public.tableau.com/app/profile/geri.harding/viz/DS4AClosingtheDigitalDivide/Dashboard2)
-- [Report]()
+- [Report](https://github.com/mosymns13/DS4A-Team13-Digital-Divide-Project/blob/4b6fd8965fdb54034e9c40a4cce432bad2934326/Presentation%20Materials/Team13_Report_Digital_Divide.pdf)
 
 ## Other Information
 
