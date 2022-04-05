@@ -25,11 +25,13 @@ Additionally, device availability is a factor in addressing the digital divide. 
 
 ## Method & Tools
 
-- **Language**: Python
-- **Data Processing**: Pandas, Numpy
-- **Data Visualizations**: Seaborn, Ploty
-- **Documentation**: Juypter Notebook
-- **Other Tools**: Tableau
+- **Language**: Python, R
+- **Data Processing**: Python (Pandas & Numpy)
+- **Data Visualizations**: Python (Seaborn & Ploty), R (ggplot2)
+- **Documentation**: Juypter Notebook, RMarkdown
+- **Other Tools**: Tableau, RStudio
+
+<img src="https://github.com/mosymns13/DS4A-Team13-Digital-Divide-Project/blob/9eae19a164e73bc9505714473ae66aff7a6286e4/Presentation%20Materials/Team%2013%20DataFolio.png" width="25">
 
 ## Deliverables
 - Datafolio
