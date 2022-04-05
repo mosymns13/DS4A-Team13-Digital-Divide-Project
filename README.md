@@ -1,6 +1,10 @@
 # DS4A-Team13-Digital-Divide-Project
 
+<img src="https://github.com/mosymns13/DS4A-Team13-Digital-Divide-Project/blob/9eae19a164e73bc9505714473ae66aff7a6286e4/Presentation%20Materials/Team%2013%20DataFolio.png" width="700">
+
+
 **Status: Complete**
+
 *Follow up projects pending*
 
 ## Background
@@ -33,13 +37,10 @@ Additionally, device availability is a factor in addressing the digital divide. 
 
 
 ## Deliverables
-
-<img src="https://github.com/mosymns13/DS4A-Team13-Digital-Divide-Project/blob/9eae19a164e73bc9505714473ae66aff7a6286e4/Presentation%20Materials/Team%2013%20DataFolio.png" width="700">
-
-- Datafolio
-- Slide Deck Presentation
-- Dashboard in Tableau
-- Report
+- [Datafolio](https://github.com/mosymns13/DS4A-Team13-Digital-Divide-Project/blob/9eae19a164e73bc9505714473ae66aff7a6286e4/Presentation%20Materials/Team%2013%20DataFolio.png)
+- [Slide Deck Presentation](https://github.com/mosymns13/DS4A-Team13-Digital-Divide-Project/blob/9eae19a164e73bc9505714473ae66aff7a6286e4/Presentation%20Materials/Final%20Team%2013%20DS4A%20Project%20Presentation.pdf)
+- [Dashboard in Tableau](https://public.tableau.com/app/profile/geri.harding/viz/DS4AClosingtheDigitalDivide/Dashboard2)
+- [Report]()
 
 ## Other Information
 
