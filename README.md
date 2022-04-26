@@ -13,7 +13,7 @@ Data Science For All (DS4A) by Correlation One is an intensive fellowship progra
 
 For the Data Science for All (Empowerment Fellowship), in Cohort 3 my group (Team 13) worked on a capstone project hoping to solve issues around the digital divide in the United States.  
 
-In this program, I was the technical lead for my project team providing gudiance on analysis strategies and predictive modeling. I managed the project timeline for deliverables and led in the design of the presentation materials. I also gave detailed feedback on deliiverables other teammates led.
+In this program, I was the technical lead for my project team providing guidance on analysis strategies and predictive modeling. I managed the project timeline for deliverables and led in the design of the presentation materials. I also gave detailed feedback on deliverables other teammates led.
 
 ## Topic
 
